@@ -1,24 +1,23 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState, useEffect, ReactHTMLElement } from 'react';
+import { useCookies } from 'react-cookie';
+
+import NavBar from './components/NavBar';
+import CategoryFilter from './components/CategoryFilter';
+import SearchBar from './components/SearchBar';
+import PostContainer from './components/PostContainer';
 
 function App() {
+  const [cookies] = useCookies(['token']);
+  const loggedIn = (cookies.token != null);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="h-screen w-128 px-20 overflow-x-hidden">
+      <NavBar />
+      <div className="z-30 sticky top-0 w-128 h-30 overflow-hidden mx-1 bg-white bg-opacity-100">
+        <SearchBar />
+        <CategoryFilter />
+      </div>
+      <PostContainer />
     </div>
   );
 }
