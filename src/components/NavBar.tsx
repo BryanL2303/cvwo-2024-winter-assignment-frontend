@@ -4,8 +4,6 @@ import axios from 'axios';
 
 import Button from './Button';
 
-axios.defaults.baseURL = "https://cvwo-web-forum-backend-9797f939441a.herokuapp.com";
-
 function assertIsFormFieldElement(element: Element): asserts element is HTMLInputElement | HTMLSelectElement | HTMLButtonElement {
     // Customize this list as necessary −−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
     if (!("value" in element)) {
