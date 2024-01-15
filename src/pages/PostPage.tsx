@@ -81,11 +81,11 @@ function PostPage() {
                 <br/>
                 <br/>
                 <label>- {post.author}</label>
-                {cookies.username == post.author && <Suspense fallback={<h1>Loading Form...</h1>}>
+                {cookies.username === post.author && <Suspense fallback={<h1>Loading Form...</h1>}>
                         <PostEditor post={post}/>
                     </Suspense>}
                 <br/>
-                {cookies.username == post.author && <Button onClick={deletePost}>Delete Post</Button>}
+                {cookies.username === post.author && <Button onClick={deletePost}>Delete Post</Button>}
                 <br/>
                 <br/>
             </div>
