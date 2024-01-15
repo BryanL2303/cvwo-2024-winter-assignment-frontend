@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, lazy, Suspense } from 'react';
 import { useCookies } from 'react-cookie';
 import { useParams } from 'react-router-dom';
 import { ArrowLeft } from 'lucide-react';
@@ -7,7 +7,9 @@ import axios from 'axios';
 import NavBar from '../components/NavBar';
 import Button from '../components/Button';
 import CommentContainer from '../components/CommentContainer'
-import PostEditor from '../components/PostEditor'
+//import PostEditor from '../components/PostEditor'
+
+const PostEditor = lazy(() => import('../components/PostEditor'))
 
 type postprop = {id: string, title: string, description: string, author: string, date:string, labels: string[]}
 
@@ -79,7 +81,9 @@ function PostPage() {
                 <br/>
                 <br/>
                 <label>- {post.author}</label>
-                {cookies.username == post.author && <PostEditor post={post}/>}
+                {cookies.username == post.author && <Suspense fallback={<h1>Loading Form...</h1>}>
+                        <PostEditor post={post}/>
+                    </Suspense>}
                 <br/>
                 {cookies.username == post.author && <Button onClick={deletePost}>Delete Post</Button>}
                 <br/>

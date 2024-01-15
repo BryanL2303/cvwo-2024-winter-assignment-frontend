@@ -1,16 +1,18 @@
-import React from 'react';
+import React, { lazy, Suspense } from 'react';
 import ReactDOM from 'react-dom/client';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import axios from 'axios';
-
-import './index.css';
-import App from './App';
-import PostPage from './pages/PostPage';
 
 import { SelectedCategoryProvider } from './context/SelectedCategoryContext'
 import { CategoriesProvider } from './context/CategoriesContext'
 import { PostsProvider } from './context/PostsContext'
 import { SearchProvider } from './context/SearchContext'
+
+import './index.css';
+import App from './App';
+//import PostPage from './pages/PostPage';
+
+const PostPage = lazy(() => import("./pages/PostPage"))
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -24,12 +26,14 @@ root.render(
     <CategoriesProvider>
     <PostsProvider>
     <SearchProvider>
+      <Suspense fallback={<h1>Loading...</h1>}>
       <Router>
-        <Routes>    
+        <Routes>
           <Route path='/' Component={App}/>
           <Route path='/post/:id' Component={PostPage}/>
         </Routes>
       </Router>
+      </Suspense>
     </SearchProvider>
     </PostsProvider>
     </CategoriesProvider>

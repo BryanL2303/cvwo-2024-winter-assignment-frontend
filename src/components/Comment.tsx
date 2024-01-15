@@ -1,11 +1,14 @@
-import React, { useState } from 'react';
+import React, { useState, lazy, Suspense } from 'react';
 import { useCookies } from 'react-cookie';
 import axios from 'axios';
 
-import Button from './Button';
+//import Button from './Button';
 import CommentCreationForm from './CommentCreationForm';
 import CommentContainer from './CommentContainer'
-import CommentEditor from './CommentEditor';
+//import CommentEditor from './CommentEditor';
+
+const Button = lazy(() => import('./Button'))
+const CommentEditor = lazy(() => import('./CommentEditor'))
 
 type CommentProp = {
     id: string,
@@ -46,8 +49,10 @@ function Comment({ id, comment, date, parent_comment_id, post_id, user_id, autho
             </div>
             <div className="h-10 flex justify-between">
                 <p>{date} -{author}</p>
-                {cookies.username == author && <CommentEditor id={id} comment={comment}/>}
-                {cookies.username == author && <Button onClick={deleteComment}>Delete Comment</Button>}
+                {cookies.username == author && <Suspense>
+                        <CommentEditor id={id} comment={comment}/>
+                        <Button onClick={deleteComment}>Delete Comment</Button>
+                    </Suspense>}
             </div>
             {loggedIn && <CommentCreationForm variant="comment" id={id}/>}
             {hasChild && <CommentContainer variant="comment" id={id}/>}
