@@ -1,4 +1,3 @@
-import React, { useState, useEffect, ReactHTMLElement } from 'react';
 import { useCookies } from 'react-cookie';
 
 import NavBar from './components/NavBar';
@@ -8,7 +7,7 @@ import PostContainer from './components/PostContainer';
 
 function App() {
   const [cookies] = useCookies(['token']);
-  const loggedIn = (cookies.token != null);
+  //const loggedIn = (cookies.token != null);
 
   return (
     <div className="h-screen w-128 px-20 overflow-x-hidden">

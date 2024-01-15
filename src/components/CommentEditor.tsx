@@ -3,18 +3,11 @@ import axios from 'axios';
 import { useCookies } from 'react-cookie';
 import { ArrowLeft } from 'lucide-react';
 
-import  { SelectedCategoryContext } from '../context/SelectedCategoryContext'
-import  { CategoriesContext } from '../context/CategoriesContext'
+//import  { SelectedCategoryContext } from '../context/SelectedCategoryContext'
+//import  { CategoriesContext } from '../context/CategoriesContext'
 import Button from './Button';
 
 function assertIsFormFieldElement(element: Element): asserts element is HTMLInputElement | HTMLSelectElement | HTMLButtonElement {
-    // Customize this list as necessary −−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-    if (!("value" in element)) {
-        throw new Error(`Element is not a form field element`);
-    }
-}
-
-function assertIsSelectElement(element: Element): asserts element is HTMLSelectElement {
     // Customize this list as necessary −−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
     if (!("value" in element)) {
         throw new Error(`Element is not a form field element`);
@@ -27,9 +20,9 @@ type CommentEditorProp = {
 }
 
 function CommentEditor({ id, comment }: CommentEditorProp) {
-    const [cookies, setCookie, removeCookie] = useCookies(['token']);
-    const [categories, setCategories] = useContext(CategoriesContext)
-    const [selectedCategory, setSelectedCategory] = useContext(SelectedCategoryContext)
+    const [cookies] = useCookies(['token']);
+    //const [categories, setCategories] = useContext(CategoriesContext)
+    //const [selectedCategory, setSelectedCategory] = useContext(SelectedCategoryContext)
     const [showForm, setShowForm] = useState(false);
     /**
      * Log in with an existing account

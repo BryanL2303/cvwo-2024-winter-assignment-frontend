@@ -24,7 +24,7 @@ const CommentProp = {
 }
 
 function CommentContainer({ variant, id, ...props }: CommentContainerProps) {
-    const [cookies, setCookie, removeCookie] = useCookies(['token']);
+    const [cookies] = useCookies(['token']);
     const [hasChild, setHasChild] = useState<{[key:string]: boolean}>({});
     const loggedIn = (cookies.token != null);
     type comment = {

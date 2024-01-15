@@ -2,7 +2,7 @@ import React, { useContext, useState } from 'react';
 import axios from 'axios';
 import { useCookies } from 'react-cookie';
 
-import  { SelectedCategoryContext } from '../context/SelectedCategoryContext'
+//import  { SelectedCategoryContext } from '../context/SelectedCategoryContext'
 import  { CategoriesContext } from '../context/CategoriesContext'
 import Button from './Button';
 
@@ -21,9 +21,9 @@ function assertIsSelectElement(element: Element): asserts element is HTMLSelectE
 }
 
 function PostCreationForm() {
-    const [cookies, setCookie, removeCookie] = useCookies(['token']);
+    const [cookies] = useCookies(['token']);
     const [categories, setCategories] = useContext(CategoriesContext)
-    const [selectedCategory, setSelectedCategory] = useContext(SelectedCategoryContext)
+    //const [selectedCategory, setSelectedCategory] = useContext(SelectedCategoryContext)
     const [showForm, setShowForm] = useState(false);
     /**
      * Log in with an existing account

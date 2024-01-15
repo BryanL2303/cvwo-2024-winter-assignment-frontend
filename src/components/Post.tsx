@@ -1,7 +1,3 @@
-import React, { useState } from 'react';
-
-import Button from './Button';
-
 type label = {
     id: string,
     label_name: string

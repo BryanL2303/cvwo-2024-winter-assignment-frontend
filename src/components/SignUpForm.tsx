@@ -1,7 +1,3 @@
-import React from 'react';
-
-import Button from './Button';
-
 function SignUpForm() {
     return (<div className="z-40 bg-gray-100 bg-opacity-80 absolute top-0 left-0 h-screen w-screen overflow-y-auto">
         <div className="mx-40 my-10 h-3/4 flex-col bg-gray-100 bg-opacity-100">

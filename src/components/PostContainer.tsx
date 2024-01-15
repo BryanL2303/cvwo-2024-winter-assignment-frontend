@@ -24,11 +24,11 @@ const PostProp = {
 }
 
 function PostContainer({ ...props }: PostContainerProps) {
-    const [cookies, setCookie, removeCookie] = useCookies(['token']);
+    const [cookies] = useCookies(['token']);
     const loggedIn = (cookies.token != null);
-    const [selectedCategory, setSelectedCategory] = useContext(SelectedCategoryContext)
+    const [selectedCategory] = useContext(SelectedCategoryContext)
     const [posts, setPosts] = useContext(PostsContext)
-    const [search, setSearch] = useContext(SearchContext)
+    const [search] = useContext(SearchContext)
     type post = { id: string, title: string, description: string, date: string, author: string, created_at: string, updated_at: string, user_id: string, label_id: string }
     //const [posts, setPosts] = useState<post[]>([])
     type label = { id: string, label_name: string}

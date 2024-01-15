@@ -3,7 +3,7 @@ import axios from 'axios';
 import { useCookies } from 'react-cookie';
 import { ArrowLeft } from 'lucide-react';
 
-import  { SelectedCategoryContext } from '../context/SelectedCategoryContext'
+//import  { SelectedCategoryContext } from '../context/SelectedCategoryContext'
 import  { CategoriesContext } from '../context/CategoriesContext'
 import Button from './Button';
 
@@ -35,9 +35,9 @@ type PostProp = {
 }
 
 function PostEditor({ post }: PostProp) {
-    const [cookies, setCookie, removeCookie] = useCookies(['token']);
-    const [categories, setCategories] = useContext(CategoriesContext)
-    const [selectedCategory, setSelectedCategory] = useContext(SelectedCategoryContext)
+    const [cookies] = useCookies(['token']);
+    const [categories] = useContext(CategoriesContext)
+    //const [selectedCategory, setSelectedCategory] = useContext(SelectedCategoryContext)
     const [showForm, setShowForm] = useState(false);
 
     console.log(post)

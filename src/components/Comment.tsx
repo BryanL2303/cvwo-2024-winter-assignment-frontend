@@ -1,4 +1,4 @@
-import React, { useState, lazy, Suspense } from 'react';
+import { useState, lazy, Suspense } from 'react';
 import { useCookies } from 'react-cookie';
 import axios from 'axios';
 
@@ -22,8 +22,8 @@ type CommentProp = {
 }
 
 function Comment({ id, comment, date, parent_comment_id, post_id, user_id, author }: CommentProp) {
-    const [cookies, setCookie, removeCookie] = useCookies(['token', 'username']);
-    const [hasChild, setHasChild] = useState<{[key:string]: boolean}>({});
+    const [cookies] = useCookies(['token', 'username']);
+    const [hasChild] = useState<{[key:string]: boolean}>({});
     const loggedIn = (cookies.token != null);
 
     function deleteComment() {
@@ -49,7 +49,7 @@ function Comment({ id, comment, date, parent_comment_id, post_id, user_id, autho
             </div>
             <div className="h-10 flex justify-between">
                 <p>{date} -{author}</p>
-                {cookies.username == author && <Suspense>
+                {cookies.username === author && <Suspense>
                         <CommentEditor id={id} comment={comment}/>
                         <Button onClick={deleteComment}>Delete Comment</Button>
                     </Suspense>}

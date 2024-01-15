@@ -21,7 +21,7 @@ function assertIsSelectElement(element: Element): asserts element is HTMLSelectE
 type CommentCreationFormProps = { variant: string, id: string, post_id?:string } & ComponentProps<"div">
 
 function CommentCreationForm({ variant, id, post_id="0" }: CommentCreationFormProps) {
-    const [cookies, setCookie, removeCookie] = useCookies(['token']);
+    const [cookies] = useCookies(['token']);
     const [showFields, setShowFields] = useState(false);
     
     function createComment(e: React.FormEvent<HTMLFormElement>) {

@@ -10,7 +10,7 @@ import Button from './Button';
 type CategoryFilterProp = ComponentProps<"div">;
 
 function CategoryFilter({ ...props }: CategoryFilterProp) {
-    const [categories, setCategories] = useContext(CategoriesContext)
+    const [categories] = useContext(CategoriesContext)
     const [selectedCategory, setSelectedCategory] = useContext(SelectedCategoryContext)
     const [showLeftArrow, setShowLeftArrow] = useState(true)
     const [showRightArrow, setShowRightArrow] = useState(true)
@@ -62,14 +62,14 @@ function CategoryFilter({ ...props }: CategoryFilterProp) {
         >
             <CategoryLabel key="All" 
                 category="All" 
-                selected={"All" == selectedCategory.label_name} 
+                selected={"All" === selectedCategory.label_name} 
                 onClick={() => setSelectedCategory({id: '0', label_name: "All"})}
                 className="snap-start"/>
             {categories.map((category) => {
                 return(
                     <CategoryLabel key={category.label_name} 
                     category={category.label_name} 
-                    selected={category.label_name == selectedCategory.label_name} 
+                    selected={category.label_name === selectedCategory.label_name} 
                     onClick={() => setSelectedCategory(category)}
                     className="snap-start"/>
                 )
