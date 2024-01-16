@@ -10,6 +10,11 @@ This contains the frontend with Typescript and React components
 # Setting up in development environment
 
 Install the project locally,
+Go to package.json and replace the following line under 
+"scripts",
+### "start": "serve -s build",
+with 
+### "start": "react-scripts start"
 Run the following commands:
 ### `npm i`
 ### `npm start`
@@ -19,6 +24,17 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
 The page will reload if you make edits.\
 You will also see any lint errors in the console.
+
+# Setting up in production environment
+
+Install the project locally,
+Run the following commands:
+### `npm i`
+### `npm run build`
+### `npm start`
+
+Runs the app in the development mode.\
+Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
 # Production environment
 
