@@ -26,7 +26,7 @@
     "serve": "^14.2.1"
   },
   "scripts": {
-    "start": "node ./build/main.js",
+    "start": "serve -s build",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
