@@ -53,9 +53,18 @@ export default function NavBar({ ...props }: NavBarProp) {
                 setCookie("token", resp.data.token)
                 setCookie("username", username.value)
             } else if (resp.data.status === 1) {
-                alert("Username already exists, please try another name.");
-            } else if (resp.data.status === 2) {
-                alert("There is an issue creating the account, please try again")
+                if (resp.data.error.username.length === 0 && resp.data.error.password.length === 0) {
+                    alert("An unexpected error has occured, please refresh the page and try again")
+                } else {
+                    let alertMessage = ""
+                    if (resp.data.error.username.length > 0) {
+                        alertMessage += "Username " + resp.data.error.username + "\n"
+                    }
+                    if (resp.data.error.password.length > 0) {
+                        alertMessage += "Password " + resp.data.error.password + "\n"
+                    }
+                    alert(alertMessage)
+                }
             }
         })
         .catch(resp => alert("There seems to be an error, please refresh the page and try again"))

@@ -21,17 +21,17 @@ function assertIsSelectElement(element: Element): asserts element is HTMLSelectE
     }
 }
 
-type post = {
-    id: string,
-    title: string,
-    description: string,
-    author: string,
-    date: string,
-    labels: string[],
-}
+//type post = 
 
 type PostProp = {
-    post: post
+    post: {
+        id: string,
+        title: string,
+        description: string,
+        author: string,
+        date: string,
+        labels: string[],
+    },
 }
 
 function PostEditor({ post }: PostProp) {
@@ -79,7 +79,6 @@ function PostEditor({ post }: PostProp) {
             labels: labels,
             description: description.value,
         }
-        console.log(payload)
 
         axios.post('/update_post', payload)
         .then(resp => {
@@ -89,7 +88,15 @@ function PostEditor({ post }: PostProp) {
             } else if (resp.data.status === 1) {
                 alert("Please relog in before trying again.")
             } else {
-                alert("There was a problem creating the post, please try again")
+                if (resp.data.error.title.length === 0) {
+                    alert("An unexpected error has occured, please refresh the page and try again")
+                } else {
+                    let alertMessage = ""
+                    if (resp.data.error.title.length > 0) {
+                        alertMessage += "Post title " + resp.data.error.title + "\n"
+                    }
+                    alert(alertMessage)
+                }
             }
         })
         .catch(resp => console.log(resp))

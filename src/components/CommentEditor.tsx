@@ -50,7 +50,6 @@ function CommentEditor({ id, comment }: CommentEditorProp) {
             token: cookies.token,
             updates: comment.value,
         }
-        console.log(payload)
 
         axios.post('/update_comment', payload)
         .then(resp => {
@@ -60,7 +59,11 @@ function CommentEditor({ id, comment }: CommentEditorProp) {
             } else if (resp.data.status === 1) {
                 alert("Please relog in before trying again.")
             } else {
-                alert("There was a problem creating the post, please try again")
+                if (resp.data.error.comment.length > 0) {
+                    alert("Comment " + resp.data.error.comment)
+                } else {
+                    alert("An unexpected error has occured, please refresh the page and try again")
+                }
             }
         })
         .catch(resp => console.log(resp))

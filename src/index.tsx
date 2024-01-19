@@ -18,6 +18,7 @@ const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
 
+//axios.defaults.baseURL = "http://127.0.0.1:3000";
 axios.defaults.baseURL = "https://cvwo-web-forum-backend-9797f939441a.herokuapp.com";
 
 root.render(

@@ -64,7 +64,6 @@ function PostCreationForm() {
             labels: labels,
             description: description.value,
         }
-        console.log(payload)
 
         axios.post('/create_post', payload)
         .then(resp => {
@@ -74,7 +73,15 @@ function PostCreationForm() {
             } else if (resp.data.status === 1) {
                 alert("Please relog in before trying again.")
             } else {
-                alert("There was a problem creating the post, please try again")
+                if (resp.data.error.title.length === 0) {
+                    alert("An unexpected error has occured, please refresh the page and try again")
+                } else {
+                    let alertMessage = ""
+                    if (resp.data.error.title.length > 0) {
+                        alertMessage += "Post title " + resp.data.error.title + "\n"
+                    }
+                    alert(alertMessage)
+                }
             }
         })
         .catch(resp => console.log(resp))
