@@ -42,10 +42,10 @@ export default function NavBar({ ...props }: NavBarProp) {
         const password = e.currentTarget[1];
         assertIsFormFieldElement(username);
         assertIsFormFieldElement(password);
-        const payload = JSON.stringify({
+        const payload = {
             username: username.value,
             password: password.value,
-        })
+        }
 
         axios.post('/signup', payload)
         .then(resp => {
@@ -53,16 +53,22 @@ export default function NavBar({ ...props }: NavBarProp) {
                 setCookie("token", resp.data.token)
                 setCookie("username", username.value)
             } else if (resp.data.status === 1) {
-                if (resp.data.error.username.length === 0 && resp.data.error.password.length === 0) {
-                    alert("An unexpected error has occured, please refresh the page and try again")
-                } else {
-                    let alertMessage = ""
+                let alertMessage = ""
+                try {
                     if (resp.data.error.username.length > 0) {
                         alertMessage += "Username " + resp.data.error.username + "\n"
                     }
+                } catch (error) {
+                }
+                try {
                     if (resp.data.error.password.length > 0) {
                         alertMessage += "Password " + resp.data.error.password + "\n"
                     }
+                } catch (error) {
+                }
+                if (alertMessage === "") {
+                    alert("An unexpected error has occured, please refresh the page and try again")
+                } else {
                     alert(alertMessage)
                 }
             }
