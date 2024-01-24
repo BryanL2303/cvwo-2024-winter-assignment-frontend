@@ -10,16 +10,11 @@ This contains the frontend with Typescript and React components
 # Setting up in development environment
 
 Install the project locally,
-Go to package.json and replace the following line under 
-"scripts",
-### "start": "serve -s build",
-with 
-### "start": "react-scripts start"
 Run the following commands:
 ### `npm i`
-### `npm start`
+### `npm run dev`
 
-Runs the app in the development mode.\
+Runs the app in the development mode.
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
 The page will reload if you make edits.\
@@ -38,7 +33,8 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
 # Production environment
 
-The project frontend is currently not deployed yet.
+The project frontend is currently deployed on the following link through Heroku:
+https://cvwo-web-forum-frontend-a8f77debc888.herokuapp.com/
 
 # Backend
 
