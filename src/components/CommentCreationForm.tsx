@@ -11,13 +11,6 @@ function assertIsFormFieldElement(element: Element): asserts element is HTMLInpu
     }
 }
 
-function assertIsSelectElement(element: Element): asserts element is HTMLSelectElement {
-    // Customize this list as necessary −−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-    if (!("value" in element)) {
-        throw new Error(`Element is not a form field element`);
-    }
-}
-
 type CommentCreationFormProps = { variant: string, id: string, post_id?:string } & ComponentProps<"div">
 
 function CommentCreationForm({ variant, id, post_id="0" }: CommentCreationFormProps) {

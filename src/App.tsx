@@ -1,14 +1,9 @@
-import { useCookies } from 'react-cookie';
-
 import NavBar from './components/NavBar';
 import CategoryFilter from './components/CategoryFilter';
 import SearchBar from './components/SearchBar';
 import PostContainer from './components/PostContainer';
 
 function App() {
-  const [cookies] = useCookies(['token']);
-  //const loggedIn = (cookies.token != null);
-
   return (
     <div className="h-screen w-128 px-20 overflow-x-hidden">
       <NavBar />

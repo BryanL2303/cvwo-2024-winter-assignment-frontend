@@ -10,19 +10,6 @@ import PostCreationForm from './PostCreationForm';
 
 type PostContainerProps = ComponentProps<"div">
 
-const PostProp = {
-    id: "0",
-    title: "Backend returned title",
-    labels: ["Game", "Entertainment"],
-    description: "Backend returned description",
-    date: "23 December 2023",
-    author: "Administrator",
-    user_id: "1",
-    label_id: "1",
-    created_at: "",
-    updated_at: ""
-}
-
 function PostContainer({ ...props }: PostContainerProps) {
     const [cookies] = useCookies(['token']);
     const loggedIn = (cookies.token != null);
@@ -30,13 +17,12 @@ function PostContainer({ ...props }: PostContainerProps) {
     const [posts, setPosts] = useContext(PostsContext)
     const [search] = useContext(SearchContext)
     type post = { id: string, title: string, description: string, date: string, author: string, created_at: string, updated_at: string, user_id: string, label_id: string }
-    //const [posts, setPosts] = useState<post[]>([])
     type label = { id: string, label_name: string}
     const [labels, setLabels] = useState<{[key:string]: label[]}>({})
     const [loaded, setLoaded] = useState(false)
 
     useEffect(() => {
-        if (selectedCategory.label_name == "All") {
+        if (selectedCategory.label_name === "All") {
             axios.post('/get_posts')
             .then(resp => {
                 if (resp.data.status === 0) {

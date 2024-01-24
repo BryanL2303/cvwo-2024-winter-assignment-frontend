@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef, useContext } from 'react';
+import { useState, useEffect, useRef, useContext } from 'react';
 import { ComponentProps } from "react";
 import { ArrowLeft, ArrowRight } from 'lucide-react';
 

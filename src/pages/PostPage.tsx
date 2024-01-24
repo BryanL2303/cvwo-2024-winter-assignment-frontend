@@ -14,7 +14,7 @@ const PostEditor = lazy(() => import('../components/PostEditor'))
 type postprop = {id: string, title: string, description: string, author: string, date:string, labels: string[]}
 
 function PostPage() {
-    const [cookies, setCookie, removeCookie] = useCookies(['token', 'username']);
+    const [cookies] = useCookies(['token', 'username']);
     const params = useParams();    
     const [post, setPost] = useState<postprop>({id: "0", title: "Fetching post", description: "", author: "", date: "", labels: []})
 
@@ -24,18 +24,6 @@ function PostPage() {
         } else window.location.href = '/';
     }, [params['id']])
 
-    /**
-     * Make fetch request to back end to get information of the post
-     * 
-     * Post to backend with:
-     * id: int
-     * 
-     * Backend will respond with the following:
-     * status:
-     * 0 - success
-     * 1 - id no longer exists
-     * 2 - unable to interact with database
-     */
     function fetchPost(id: string) {
         axios.post('/get_post', {id: id})
         .then(resp => {

@@ -2,10 +2,8 @@ import { useState, lazy, Suspense } from 'react';
 import { useCookies } from 'react-cookie';
 import axios from 'axios';
 
-//import Button from './Button';
 import CommentCreationForm from './CommentCreationForm';
 import CommentContainer from './CommentContainer'
-//import CommentEditor from './CommentEditor';
 
 const Button = lazy(() => import('./Button'))
 const CommentEditor = lazy(() => import('./CommentEditor'))

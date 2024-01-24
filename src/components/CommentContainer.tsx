@@ -10,19 +10,6 @@ type CommentContainerProps = {
     id: string
 } & ComponentProps<"div">
 
-const CommentProp = {
-    id: "0",
-    title: "Backend returned title",
-    labels: ["Game", "Entertainment"],
-    description: "Backend returned description",
-    date: "23 December 2023",
-    author: "Administrator",
-    user_id: "1",
-    label_id: "1",
-    created_at: "",
-    updated_at: ""
-}
-
 function CommentContainer({ variant, id, ...props }: CommentContainerProps) {
     const [cookies] = useCookies(['token']);
     const [hasChild, setHasChild] = useState<{[key:string]: boolean}>({});
@@ -50,7 +37,7 @@ function CommentContainer({ variant, id, ...props }: CommentContainerProps) {
     }, [])
 
     return <div {...props} className="w-128 h-auto m-5 space-y-1 flex-col">
-        {loggedIn && variant == "post" && <CommentCreationForm variant={variant} id={id} />}
+        {loggedIn && variant === "post" && <CommentCreationForm variant={variant} id={id} />}
         {Array.isArray(comments) && comments.map((comment: comment) => {
             return <Comment id={comment.id} 
             key={comment.id} 
