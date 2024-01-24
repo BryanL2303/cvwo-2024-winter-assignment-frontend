@@ -13,12 +13,23 @@ Install the project locally,
 Run the following commands:
 ### `npm i`
 ### `npm run dev`
-
 Runs the app in the development mode.
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-The page will reload if you make edits.\
+The page will reload if you make edits.
 You will also see any lint errors in the console.
+
+# To run development environment in docker container
+
+Install the project locally,
+Run the following commands:
+### `docker build . -t dev`
+### `docker run -d -p 3000:3000 --rm dev`
+Runs the app in the development mode.
+Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+
+Run `docker ps` to view the running container and its id
+To stop the container run `docker stop <id>`
 
 # Setting up in production environment
 
@@ -28,7 +39,7 @@ Run the following commands:
 ### `npm run build`
 ### `npm start`
 
-Runs the app in the development mode.\
+Runs the app in the development mode.
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
 # Production environment
