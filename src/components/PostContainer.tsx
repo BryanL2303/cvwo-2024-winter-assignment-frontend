@@ -33,6 +33,7 @@ function PostContainer({ ...props }: PostContainerProps) {
     //const [posts, setPosts] = useState<post[]>([])
     type label = { id: string, label_name: string}
     const [labels, setLabels] = useState<{[key:string]: label[]}>({})
+    const [loaded, setLoaded] = useState(false)
 
     useEffect(() => {
         if (selectedCategory.label_name == "All") {
@@ -41,6 +42,7 @@ function PostContainer({ ...props }: PostContainerProps) {
                 if (resp.data.status === 0) {
                     setPosts(resp.data.posts)
                     setLabels(resp.data.labels)
+                    setLoaded(true)
                 }
             })
             .catch(resp => console.log(resp))
@@ -50,7 +52,6 @@ function PostContainer({ ...props }: PostContainerProps) {
                 if (resp.data.status === 0) {
                     setPosts(resp.data.posts)
                     setLabels(resp.data.labels)
-                    console.log(resp.data)
                 }
             })
             .catch(resp => console.log(resp))
@@ -59,8 +60,9 @@ function PostContainer({ ...props }: PostContainerProps) {
 
     return <div {...props} className="w-128 m-5 space-y-1 overflow-hidden flex-col">
         {loggedIn && <PostCreationForm />}
-        {Array.isArray(posts) && posts.map((post: post) => {
-            console.log(post)
+        {!loaded && <label>loading posts...</label>}
+        {loaded && Array.isArray(posts) && posts.length === 0 && <label>There are currently no posts.</label>}
+        {loaded && Array.isArray(posts) && posts.map((post: post) => {
             return <Post id={post.id} key={post.id} title={post.title} labels={labels[post.id]} description={post.description} date={post.date} author={post.author} search={search} />
         })}
     </div>
