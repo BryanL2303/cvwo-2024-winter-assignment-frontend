@@ -3,20 +3,24 @@ import { ComponentProps } from "react";
 import { ArrowLeft, ArrowRight } from 'lucide-react';
 
 import  { SelectedCategoryContext } from '../context/SelectedCategoryContext'
-import  { CategoriesContext } from '../context/CategoriesContext'
 import CategoryLabel from './CategoryLabel';
 import Button from './Button';
+import { setSelectedCategory } from '../store/features/categorySlice';
+import { useAppSelector, useAppDispatch } from "../store/store";
 
 type CategoryFilterProp = ComponentProps<"div">;
 
 function CategoryFilter({ ...props }: CategoryFilterProp) {
-    const [categories] = useContext(CategoriesContext)
-    const [selectedCategory, setSelectedCategory] = useContext(SelectedCategoryContext)
+//    const [categories] = useContext(CategoriesContext)
     const [showLeftArrow, setShowLeftArrow] = useState(true)
     const [showRightArrow, setShowRightArrow] = useState(true)
     const [translate, setTranslate] = useState(0)
     const [TRANSLATE_AMOUNT, setTRANSLATE_AMOUNT] = useState(0);
     const containerRef = useRef<HTMLDivElement>(null)
+    const dispatch=useAppDispatch();
+
+    const categories = useAppSelector((state)=> state.category.categoriesList);
+    const selectedCategory = useAppSelector((state)=> state.category.selectedCategory);
 
     useEffect(() => {
         if (containerRef.current == null) return
@@ -63,14 +67,14 @@ function CategoryFilter({ ...props }: CategoryFilterProp) {
             <CategoryLabel key="All" 
                 category="All" 
                 selected={"All" === selectedCategory.label_name} 
-                onClick={() => setSelectedCategory({id: '0', label_name: "All"})}
+                onClick={() => dispatch(setSelectedCategory({category: {id: '0', label_name: "All"}}))}
                 className="snap-start"/>
             {categories.map((category) => {
                 return(
                     <CategoryLabel key={category.label_name} 
                     category={category.label_name} 
                     selected={category.label_name === selectedCategory.label_name} 
-                    onClick={() => setSelectedCategory(category)}
+                    onClick={() => dispatch(setSelectedCategory({category: category}))}
                     className="snap-start"/>
                 )
             })}

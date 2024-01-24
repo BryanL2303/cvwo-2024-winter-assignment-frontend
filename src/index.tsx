@@ -2,14 +2,10 @@ import React, { lazy, Suspense } from 'react';
 import ReactDOM from 'react-dom/client';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import axios from 'axios';
-
-import { SelectedCategoryProvider } from './context/SelectedCategoryContext'
-import { CategoriesProvider } from './context/CategoriesContext'
-import { PostsProvider } from './context/PostsContext'
-import { SearchProvider } from './context/SearchContext'
-
 import './index.css';
 import App from './App';
+import { store } from './store/store';
+import { Provider } from 'react-redux';
 
 const PostPage = lazy(() => import("./pages/PostPage"))
 
@@ -22,21 +18,15 @@ axios.defaults.baseURL = "https://cvwo-web-forum-backend-9797f939441a.herokuapp.
 
 root.render(
   <React.StrictMode>
-    <SelectedCategoryProvider>
-    <CategoriesProvider>
-    <PostsProvider>
-    <SearchProvider>
+    <Provider store={store}>      
       <Suspense fallback={<h1>Loading...</h1>}>
-      <Router>
-        <Routes>
-          <Route path='/' Component={App}/>
-          <Route path='/post/:id' Component={PostPage}/>
-        </Routes>
-      </Router>
+        <Router>
+          <Routes>
+            <Route path='/' Component={App}/>
+            <Route path='/post/:id' Component={PostPage}/>
+          </Routes>
+        </Router>
       </Suspense>
-    </SearchProvider>
-    </PostsProvider>
-    </CategoriesProvider>
-    </SelectedCategoryProvider>
+    </Provider>
   </React.StrictMode>
 );
