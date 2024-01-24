@@ -1,26 +1,47 @@
-import { useState, useEffect, useRef, useContext } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { ComponentProps } from "react";
 import { ArrowLeft, ArrowRight } from 'lucide-react';
-
-import  { SelectedCategoryContext } from '../context/SelectedCategoryContext'
+import { useCookies } from 'react-cookie';
+import axios from 'axios';
 import CategoryLabel from './CategoryLabel';
 import Button from './Button';
-import { setSelectedCategory } from '../store/features/categorySlice';
+import { setCategories, setSelectedCategory } from '../store/features/categorySlice';
 import { useAppSelector, useAppDispatch } from "../store/store";
 
 type CategoryFilterProp = ComponentProps<"div">;
 
 function CategoryFilter({ ...props }: CategoryFilterProp) {
-//    const [categories] = useContext(CategoriesContext)
     const [showLeftArrow, setShowLeftArrow] = useState(true)
     const [showRightArrow, setShowRightArrow] = useState(true)
     const [translate, setTranslate] = useState(0)
     const [TRANSLATE_AMOUNT, setTRANSLATE_AMOUNT] = useState(0);
     const containerRef = useRef<HTMLDivElement>(null)
     const dispatch=useAppDispatch();
-
     const categories = useAppSelector((state)=> state.category.categoriesList);
     const selectedCategory = useAppSelector((state)=> state.category.selectedCategory);
+    const [cookies, setCookie] = useCookies(['categories', 'category']);
+
+    useEffect(() => {
+        if (cookies.categories == null) {
+            axios.post('/get_labels')
+            .then(resp => {
+                if (resp.data.status === 0) {
+                    dispatch(setCategories({categories: resp.data.labels}))
+                    setCookie('categories', resp.data.labels)
+                }
+            })
+            .catch(resp => console.log(resp))
+        } else {
+            dispatch(setCategories({categories: cookies.categories}))
+        }
+        if (cookies.category != null) {
+            dispatch(setSelectedCategory({category: cookies.category}))
+        }
+    }, [])
+
+    useEffect(() => {
+        setCookie("category", selectedCategory)
+    }, [selectedCategory])
 
     useEffect(() => {
         if (containerRef.current == null) return

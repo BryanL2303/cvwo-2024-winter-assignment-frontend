@@ -1,5 +1,4 @@
 import { ComponentProps } from "react";
-
 import Button from './Button';
 
 type CategoryFilterProp = {

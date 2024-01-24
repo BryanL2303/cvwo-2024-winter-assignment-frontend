@@ -22,6 +22,7 @@ function PostContainer({ ...props }: PostContainerProps) {
     const dispatch = useAppDispatch();
 
     useEffect(() => {
+        setLoaded(false)
         if (selectedCategory.label_name === "All") {
             axios.post('/get_posts')
             .then(resp => {
@@ -38,6 +39,7 @@ function PostContainer({ ...props }: PostContainerProps) {
                 if (resp.data.status === 0) {
                     dispatch(setPosts({posts: resp.data.posts}))
                     setLabels(resp.data.labels)
+                    setLoaded(true)
                 }
             })
             .catch(resp => console.log(resp))
