@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
 import axios from 'axios';
+import React, { useState } from 'react';
 import { useCookies } from 'react-cookie';
 import Button from './Button';
 import { useAppSelector } from "../store/store";
@@ -22,7 +22,7 @@ function PostCreationForm() {
     const [cookies] = useCookies(['token']);
     const categories = useAppSelector((state)=> state.category.categoriesList);
     const [showForm, setShowForm] = useState(false);
-    
+
     function createPost(e: React.FormEvent<HTMLFormElement>) {
         e.preventDefault();
         //Element 0 is the button to go back
@@ -82,9 +82,9 @@ function PostCreationForm() {
             <br/>
             <br/>
             <label>Categories: </label>
-            <select  className="flex">
+            <select multiple={true} className="flex">
                 {categories.map((category) => {
-                    return (<option key={category.id} id={category.id} value={category.id}>{category.label_name}</option>)
+                    return (<option key={category.id} id={category.id}>{category.label_name}</option>)
                 })}
             </select>
             <br/>

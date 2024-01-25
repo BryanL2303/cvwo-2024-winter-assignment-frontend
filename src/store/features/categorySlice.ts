@@ -10,7 +10,7 @@ interface CategoryState{
 const initialState: CategoryState = {
     categoriesList: [],
     selectedCategory: {id: '0',
-        label_name: "All"}
+        label_name: "All"},
 }
 
 export const CategorySlice = createSlice({
