@@ -85,12 +85,12 @@ https://www.youtube.com/watch?v=E1cklb4aeXA
 Refered to documentations for react components/libraries
 Refered to TailwindCSS documentations
 
+Setting up Redux:
+https://www.youtube.com/watch?v=EqbwHO6Vgbg
+
 Bug fixing:
 Fixed context issues with ReactNode as type:
 https://dev.to/elhamnajeebullah/react-typescript-what-is-reactnode-and-when-to-use-it-3660
 
 Error with typescript reading form values fixed with a function from below query:
 https://stackoverflow.com/questions/71598967/how-to-get-the-value-of-input-tag-onsubmit-without-using-onchange-in-react-js-ty
-
-Setting up Redux:
-https://www.youtube.com/watch?v=EqbwHO6Vgbg
