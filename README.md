@@ -64,18 +64,6 @@ The backend url can be changed in `/src/index.tsx` if user is trying to switch t
 4. Users can filter posts by categories predetermined
 5. Users can type into a search bar to filter posts
 
-# Current Status
-
-To attempt to further improve the project through the following means
-
-1. Handle database error status from backend
-2. Replace React Context with Redux
-3. Dockerize the project
-4. Further improve UI/UX by fixing out of place components
-    a. The buttons for editing and deleting comments not aligning
-    b. The select component for creating and updating labels taking too much vertical space and cannot be closed
-    c. Creating more variants for button styles
-
 # Acknowledgements
 
 Learning:
@@ -103,3 +91,6 @@ https://dev.to/elhamnajeebullah/react-typescript-what-is-reactnode-and-when-to-u
 
 Error with typescript reading form values fixed with a function from below query:
 https://stackoverflow.com/questions/71598967/how-to-get-the-value-of-input-tag-onsubmit-without-using-onchange-in-react-js-ty
+
+Setting up Redux:
+https://www.youtube.com/watch?v=EqbwHO6Vgbg
