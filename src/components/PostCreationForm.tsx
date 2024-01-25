@@ -1,9 +1,8 @@
-import React, { useContext, useState } from 'react';
+import React, { useState } from 'react';
 import axios from 'axios';
 import { useCookies } from 'react-cookie';
-
-import  { CategoriesContext } from '../context/CategoriesContext'
 import Button from './Button';
+import { useAppSelector } from "../store/store";
 
 function assertIsFormFieldElement(element: Element): asserts element is HTMLInputElement | HTMLSelectElement | HTMLButtonElement {
     // Customize this list as necessary −−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -21,7 +20,7 @@ function assertIsSelectElement(element: Element): asserts element is HTMLSelectE
 
 function PostCreationForm() {
     const [cookies] = useCookies(['token']);
-    const [categories] = useContext(CategoriesContext)
+    const categories = useAppSelector((state)=> state.category.categoriesList);
     const [showForm, setShowForm] = useState(false);
     
     function createPost(e: React.FormEvent<HTMLFormElement>) {
@@ -83,9 +82,9 @@ function PostCreationForm() {
             <br/>
             <br/>
             <label>Categories: </label>
-            <select multiple={true} className="flex">
+            <select  className="flex">
                 {categories.map((category) => {
-                    return (<option key={category.id} id={category.id}>{category.label_name}</option>)
+                    return (<option key={category.id} id={category.id} value={category.id}>{category.label_name}</option>)
                 })}
             </select>
             <br/>

@@ -1,10 +1,9 @@
-import React, { useContext, useState } from 'react';
+import React, { useState } from 'react';
 import axios from 'axios';
 import { useCookies } from 'react-cookie';
 import { ArrowLeft } from 'lucide-react';
-
-import  { CategoriesContext } from '../context/CategoriesContext'
 import Button from './Button';
+import { useAppSelector } from "../store/store";
 
 function assertIsFormFieldElement(element: Element): asserts element is HTMLInputElement | HTMLSelectElement | HTMLButtonElement {
     // Customize this list as necessary −−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -33,7 +32,7 @@ type PostProp = {
 
 function PostEditor({ post }: PostProp) {
     const [cookies] = useCookies(['token']);
-    const [categories] = useContext(CategoriesContext)
+    const categories = useAppSelector((state)=> state.category.categoriesList);
     const [showForm, setShowForm] = useState(false);
     
     function editPost(e: React.FormEvent<HTMLFormElement>) {
