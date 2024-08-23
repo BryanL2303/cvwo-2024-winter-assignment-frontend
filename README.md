@@ -42,11 +42,6 @@ Run the following commands:
 Runs the app in the development mode.
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-# Production environment
-
-The project frontend is currently deployed on the following link through Heroku:
-https://cvwo-web-forum-frontend-a8f77debc888.herokuapp.com/
-
 # Backend
 
 The github page for the backend can be found through the following link:
